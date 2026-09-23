@@ -18,7 +18,7 @@ close all;
 clc; % clears our command window
 
 % We will need "Calgae2" colormap for Chlorophyll-a:
-% load('CAlgae2.mat')
+load('CAlgae2.mat')
 
 % Spatially subset to Cape Fear River and SW area
 % Define coordinate bounds
@@ -58,20 +58,20 @@ tsm = 10.^tsm_logscale;
 tsm(tsm>50)=nan;
 
 % Maps
-figure(1);
-clf;
-pcolor(lon,lat,chl); shading flat;
-axis([w e s n]); % Order: West, East, South, North
-% improve color range
-colormap(Calgae2);
-clim([0.1 20]);
-cb = colorbar;
-cb.Ticks = [0.25 0.5 0.75 1 1.5 2 3 5 10];
-cb.FontSize = 14;
-cb.Label.String = 'Chl-a (mg m^{-3}) (NN)';
-cb.Label.FontSize = 18;
-set(gca,'colorscale','log','xtick',[],'ytick',[])
-title([imagedate ' Sentinel-3' sat ' OLCI Chl'],'fontweight','normal','fontsize',18)
+% figure(1);
+% clf;
+% pcolor(lon,lat,chl); shading flat;
+% axis([w e s n]); % Order: West, East, South, North
+% % improve color range
+% colormap(Calgae2);
+% clim([0.1 20]);
+% cb = colorbar;
+% cb.Ticks = [0.25 0.5 0.75 1 1.5 2 3 5 10];
+% cb.FontSize = 14;
+% cb.Label.String = 'Chl-a (mg m^{-3}) (NN)';
+% cb.Label.FontSize = 18;
+% set(gca,'colorscale','log','xtick',[],'ytick',[])
+% title([imagedate ' Sentinel-3' sat ' OLCI Chl'],'fontweight','normal','fontsize',18)
 % print(gcf,[imagedate '_S3-OLCI_chl.png'],'-dpng','-r200');
 
 
