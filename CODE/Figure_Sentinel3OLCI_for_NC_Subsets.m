@@ -1,4 +1,6 @@
 % Make figures of Sentinel-3 OLCI Data
+% Using spatially subset data 
+% Data were subset using script "Spatially_Subset_Sentinel3OLCI_for_NC.m"
 %
 % Adapted from:
 % Ocean Color Remote Sensing Part 2, University of Connecticut
@@ -18,7 +20,7 @@ close all;
 clc; % clears our command window
 
 % We will need "Calgae2" colormap for Chlorophyll-a:
-load('CAlgae2.mat')
+load('Calgae2.mat')
 
 % Spatially subset to Cape Fear River and SW area
 % Define coordinate bounds
@@ -34,22 +36,14 @@ addpath(datafolder);
 % filechl = 'chl_oc4me.nc'; % Chlorophyll a for global ocean / offshore
 filechl = 'subset_20250819_S3B_chl_nn.nc'; % Chlorophyll a better for coastal waters
 filetsm = 'subset_20250819_S3B_tsm_nn.nc';
-filecoords = '20250819_S3B_geo_coordinates.nc';
-% ncdisp([datafolder filecoords])
-% ncdisp([datafolder filetsm]) % 'log10 scaled (Neural Net) Total suspended matter concentration'
-% ncdisp([datafolder filechl]) % 'log10 scaled (Neural Net) Algal pigment concentration'
-imagedate = filecoords(1:8); % string to use in figure title and saved figure name
+imagedate = filechl(8:15); % string to use in figure title and saved figure name
 if contains(filechl, 'A'), sat = 'A'; elseif contains(filechl, 'B'), sat = 'B'; end
 
-lon = ncread([datafolder filecoords],'longitude');
-lat = ncread([datafolder filecoords],'latitude');
+lon = ncread([datafolder filechl],'longitude');
+lat = ncread([datafolder filechl],'latitude');
 % chl = ncread([datafolder filechl],'CHL_OC4ME'); % Chlorophyll a for global ocean / offshore
-chl_logscale = ncread([datafolder filechl],'CHL_NN'); % Chlorophyll a better for coastal waters
-tsm_logscale = ncread([datafolder filetsm],'TSM_NN'); % Total suspended matter better for coastal waters
-
-% These are stored as log10 scaled, so scale them back to linear
-chl = 10.^chl_logscale;
-tsm = 10.^tsm_logscale;
+chl = ncread([datafolder filechl],'CHL_NN'); % Chlorophyll a better for coastal waters
+tsm = ncread([datafolder filetsm],'TSM_NN'); % Total suspended matter better for coastal waters
 
 % Check data to see if need to cut off values at a certain sanity threshold
 % For example, TSM of > 50 or so is not realistic for this example
