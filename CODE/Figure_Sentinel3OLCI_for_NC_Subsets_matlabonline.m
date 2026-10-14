@@ -83,4 +83,4 @@ cb.Label.String = 'TSM (mg L^{-3})';
 cb.Label.FontSize = 18;
 set(gca,'colorscale','log')
 title([imagedate ' Sentinel-3' sat ' OLCI TSM'],'fontweight','normal','fontsize',18)
-% print(gcf,[imagedate '_S3-OLCI_tsm.png'],'-dpng','-r200');
+print(gcf,[imagedate '_S3' sat '-OLCI_tsm.png'],'-dpng','-r200');

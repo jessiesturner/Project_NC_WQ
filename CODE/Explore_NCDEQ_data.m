@@ -1,0 +1,38 @@
+% Inspect bacterial count data from Arden Ganse, UNCW
+% Originally from North Carolina Department of Environmental Quality
+%
+% uses file: "CFR_sites_combined_weekly.mat"
+%
+% Email from Arden (October 8, 2026)
+%
+% Thanks for reaching out! I do already have the yearly records
+% concatenated for all of the DEQ sampling sites in NC, which is likely
+% more sites than you guys are interested in with the Cape Fear focus
+% specifically.
+% 
+% I simplified my record slightly to a format that is hopefully a bit more
+% useful for you guys. Essentially, I combined the records for all of the
+% sites in the CFR vicinity (attached figure to this email circling the
+% locations of the sites used) and then took the weekly averages of all
+% parameters.
+% 
+% The variables in the struct are time, salinity, temperature, the
+% geometric mean of enterococcus measurements (ENTGM), and the single
+% sample maximum enterococcus (ENTSSM). The variables N_GM and N_SSM store
+% the number of observations used for each weekly average calculation.
+% 
+% The geometric mean is what the DEQ bases their swim advisories/closures
+% on, but there are quite a few NaN values in this record, so I included
+% both the GM and SSM measures for you guys. The second figure I attached
+% is the entire weekly averaged record for the ENTGM and ENTSSM
+% observations.
+% 
+% Please let me know you guys have any questions or if there is anything
+% else that I can provide!
+
+load CFR_sites_combined_weekly.mat
+whos
+combined
+
+
+
