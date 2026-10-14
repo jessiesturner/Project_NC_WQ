@@ -33,6 +33,22 @@
 load CFR_sites_combined_weekly.mat
 whos
 combined
+weekly_time = combined.time;
+gm = combined.ENTGM;
+ssm = combined.ENTSSM;
 
+% make a figure to show distribution of data over the whole time record
+figure
+histogram(weekly_time)
+histogram(gm)
+histogram(ssm)
 
+% find when weekly times/dates are within a certain timeframe
+start_date = datetime(2025,08,01);
+end_date = datetime(2025,10,31);
+index_timeofinterest = find(weekly_time >= start_date & weekly_time <= end_date);
+weeks_timeofinterest = weekly_time(index_timeofinterest);
+gm_timeofinterest = gm(index_timeofinterest);
+ssm_timeofinterest = ssm(index_timeofinterest);
 
+tbl = table(weeks_timeofinterest,gm_timeofinterest,ssm_timeofinterest)
